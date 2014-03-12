@@ -1,2 +1,24 @@
-# OS X
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+build
+
+node_modules
+
 .DS_Store
+
+platforms/
+
+.sass-cache/
+.sass-cache
+
+.cordova
