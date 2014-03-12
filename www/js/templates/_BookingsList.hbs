@@ -1,0 +1,20 @@
+{{#each this}}
+{{#with booking}}
+	<li class="topcoat-list__item list-item booking {{state}}">
+		<a href="#/bookings/{{id}}">
+			<span class="booking-attendee-name">{{attendee.name}}</span>
+			<span class="booking-title">{{title}}</span>
+			{{#if starts_on}}
+			<span class="booking-date">{{bookingListTimeText}}</span>
+			{{/if}}
+			<span class="booking-action-icon">
+				{{#if confirmed}}
+				<i class="ss-check"></i>
+				{{else}}
+				<i class="ss-navigateright"></i>
+				{{/if}}
+			</span>
+		</a>
+	</li>
+{{/with}}
+{{/each}}

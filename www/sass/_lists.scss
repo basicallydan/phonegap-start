@@ -1,0 +1,20 @@
+.topcoat-list__item.list-item {
+	padding:0;
+	background-color:$white;
+
+	border-top:none;
+	border-bottom:1px solid $light-grey;
+
+	list-style:none;
+
+	& > a, & > div {
+		box-sizing:border-box;
+		padding:$standard-margin;
+		display: block;
+		height:100%;
+		width:100%;
+		position:relative;
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		-webkit-tap-highlight-color: transparent; /* For some Androids */
+	}
+}

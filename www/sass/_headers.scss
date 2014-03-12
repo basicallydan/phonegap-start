@@ -1,0 +1,21 @@
+@import '_colours';
+@import '_sizes';
+
+.view-header {
+	padding:$standard-margin 0;
+	background-color:$white;
+	position:relative;
+
+	border-top:none;
+	border-bottom:1px solid $light-grey;
+	.header-text {
+		display: block;
+		margin: 0 1.563em;
+		text-align:center;
+		span {
+			font-size:1.188em;
+			font-weight:lighter;
+			color:$off-black;
+		}
+	}
+}

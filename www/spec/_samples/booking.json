@@ -1,0 +1,57 @@
+{
+  "booking": {
+    "sku": "ay4y6w",
+    "state": "instructor_confirmed",
+    "title": "Enquiry with Amazing Tennis",
+    "price_in_units": 50000,
+    "currency": "GBP",
+    "starts_on": "2014-03-06T10:00:00Z",
+    "attendee": {
+      "name": "Dan Hough",
+      "username": "basicallydan",
+      "avatar": "http://uat.upmysport.com/avatars/medium/missing.png"
+    },
+    "instructor": {
+      "name": "Amazing Tennis",
+      "username": "amazingtennis",
+      "avatar": "https://s3-eu-west-1.amazonaws.com/umsdevassets/users/343/steve_golf_photo_medium.jpg?1378676507"
+    },
+    "comments": [
+      {
+        "body": "Hello",
+        "action": "message",
+        "from": "user",
+        "username": "basicallydan",
+        "created_at": "2014-03-04T09:21:32Z"
+      },
+      {
+        "body": null,
+        "action": "instructor_makes_offer",
+        "from": "instructor",
+        "username": "amazingtennis",
+        "created_at": "2014-03-04T09:22:24Z"
+      },
+      {
+        "body": null,
+        "action": "instructor_changes_time",
+        "from": "instructor",
+        "username": "amazingtennis",
+        "created_at": "2014-03-04T09:22:55Z"
+      },
+      {
+        "body": "Bleep",
+        "action": "message",
+        "from": "instructor",
+        "username": "amazingtennis",
+        "created_at": "2014-03-04T09:23:11Z"
+      },
+      {
+        "body": "Hello",
+        "action": "message",
+        "from": "instructor",
+        "username": "amazingtennis",
+        "created_at": "2014-03-04T10:00:35Z"
+      }
+    ]
+  }
+}

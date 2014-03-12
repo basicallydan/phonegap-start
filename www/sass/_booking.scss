@@ -1,0 +1,95 @@
+@import "_mixins";
+@import "_colours";
+@import "bourbon/addons/_clearfix";
+
+$avatar-radius:40px;
+
+.comments-list {
+	.comment {
+		div {
+			display: inline-block;
+			img {
+				@include circle($avatar-radius);
+				float:left;
+				margin-top:$tiny-margin / 2;
+				margin-right:$tiny-margin;
+				margin-bottom:$tiny-margin;
+			}
+
+			.comment-from {
+				font-size:0.7em;
+				.comment-author {
+					color:$pink;
+				}
+				.comment-date {
+					color:$grey;
+				}
+			}
+
+			.comment-body {
+				display:block;
+				font-size:0.8em;
+				color:$darker-grey;
+				margin-left:$tiny-margin + $avatar-radius;
+
+				&.comment-action {
+					font-style: italic;
+				}
+			}
+		}
+	}
+}
+
+.comments-list--latest {
+	.comment {
+		display:none;
+
+		&:nth-child(1) {
+			display:block;
+		}
+		&:nth-child(2) {
+			display:block;
+		}
+	}
+}
+
+// Booking price modal
+.currency {
+	position:relative;
+	display:block;
+	.symbol {
+		position:absolute;
+		top:$tiny-margin;
+		bottom:$tiny-margin;
+		left:$tiny-margin;
+		display:inline-block;
+		background: transparent;
+		font-weight: 100;
+		font-size:0.9em;
+	}
+	.value {
+		padding-left:$standard-margin;
+	}
+}
+
+.toggle-all {
+	width:100%;
+	padding:1em;
+	text-align:center;
+	background-color:$lighter-grey;
+	border-bottom:1px solid $light-grey;
+	box-sizing:border-box;
+	display:none;
+	font-size:0.8em;
+
+	.ss-view {
+		color:$black;
+		font-size: 1.4em;
+		vertical-align: middle;
+		margin-right: 0.3em;
+	}
+}
+
+.toggle-all--visible {
+	display:block;
+}

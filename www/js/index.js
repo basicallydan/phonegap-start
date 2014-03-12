@@ -1,49 +1,101 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+var $ = require('jquery');
+var Backbone = require('backbone');
+Backbone.$ = $;
+Backbone.LocalStorage = require('backbone.localstorage');
+var _ = require('underscore');
+var url = require('url');
+var cookie = require('cookie-cutter');
+var AuthenticationModel = require('./models/Authentication');
+var AuthenticationManager = require('./auth/AuthenticationManager');
+var loggedInIdManager = require('./utils/loggedInIdManager');
+var loggedInId = loggedInIdManager.get();
+var pushNotifications = require('./utils/pushNotifications');
+require('./vendor/jquery-ajax-localstorage-cache');
+var config = require('./config/config.js');
+var backgroundService;
+var authentication;
+var network = require('./utils/network');
+require('./utils/handlebarHelpers');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+// Backbone.sync = doubleSync;
 
-        console.log('Received Event: ' + id);
+$.ajaxSetup({
+    localCache:true,
+    isCacheValid: network.isOffline,
+    beforeSend: function (xhr) {
+        var authHash = window.btoa(config.apiAuthToken);
+        xhr.setRequestHeader('Accept', 'application/json');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('Authorization', 'Basic ' + authHash);
+    },
+    statusCode: {
+        401: function (data) {
+            alert('401 Unauthorized:', data);
+        },
+        403: function (data) {
+            alert('403 Forbidden:', data);
+        }
     }
-};
+});
+
+function handleSuccessService(data) {
+    console.log('Service started', data);
+}
+
+function handleErrorService(data) {
+    console.log('Error starting service', data);
+}
+
+function handleSuccessUpdate(data) {
+    console.log('Updates started', data);
+}
+
+function handleErrorUpdate(data) {
+    console.log('Error starting updates', data);
+}
+
+document.addEventListener('deviceready', function () {
+    if (typeof(loaded) !== 'undefined' && loaded) return;
+    var Router = require('./router');
+    var router = new Router();
+    var authentication = new AuthenticationManager();
+    // if (loggedInId) {
+    //     authentication = new AuthenticationModel({ id: loggedInId });
+    //     authentication.fetch();
+    // } else {
+    //     authentication = new AuthenticationModel();
+    // }
+
+    // setInterval(function (argument) {
+    //     console.log('Alive');
+    // }, 1000);
+
+    Backbone.history.start();
+
+    if (authentication.loggedIn()) {
+        Backbone.history.navigate('#bookings', {trigger: true});
+    } else {
+        Backbone.history.navigate('#login', {trigger: true});
+    }
+
+    $('#main-navigation-bar').on('click', '.menu-button', function (event) {
+        event.preventDefault();
+        $('.view-container, .burger-menu-container').toggleClass('menu-open');
+    });
+
+    $('body').on('click', '.burger-menu-log-out', function (event) {
+        event.preventDefault();
+        authentication.logout();
+        Backbone.history.navigate('#login', {trigger: true});
+    });
+
+    if (device.platform === 'android' || device.platform === 'Android') {
+        backgroundService = cordova.require('com.red_folder.phonegap.plugin.backgroundservice.BackgroundService');
+        backgroundService.startService(handleSuccessService, handleErrorService);
+        backgroundService.registerForUpdates(handleSuccessUpdate, handleErrorUpdate);
+    }
+
+    pushNotifications.register();
+
+    loaded = true;
+});

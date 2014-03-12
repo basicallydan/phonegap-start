@@ -1,0 +1,112 @@
+@import '_colours';
+@import '_sizes';
+@import 'bourbon/css3/_transform';
+
+.topcoat-list {
+	border-top:none;
+}
+
+.view-header.bookings-view-header {
+	.header-text {
+		text-align:left;
+	}
+	a.settings-button {
+		top:$standard-margin;
+		right:$standard-margin;
+		position: absolute;
+		i {
+			color:$off-black;
+			font-size:1.388em;
+		}
+	}
+}
+
+.list-item.booking {
+	&.confirmed {
+		background-color:$off-white;
+	}
+
+	& > a {
+		.booking-action-icon {
+			top:40%;
+			right:$standard-margin;
+			position: absolute;
+
+			.ss-check, .ss-navigateright {
+				font-size:1.25em;
+			}
+
+			.ss-check {
+				color:$green;
+				font-size:1.35em;
+			}
+		}
+
+		.booking-attendee-name {
+			color:$pink;
+			display:block;
+			font-weight:lighter;
+			font-size:1em;
+		}
+
+		.booking-title, .booking-date {
+			color:$grey;
+			display:block;
+			font-size:0.750em;
+			max-width: 85%;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.booking-title {
+			color:$darker-grey;
+		}
+	}
+}
+
+label.inline-radio-label {  
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 30px;
+    margin-right: 15px;
+    color:$teal;
+}
+
+input[type=radio] {  
+    display: none;  
+}
+
+label.inline-radio-label:before {  
+    content: "";  
+    display: inline-block;  
+  
+	width: 20px;
+	height: 20px;
+  
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 0;  
+    background-color: $white;
+    border:1px solid $light-grey;
+    box-shadow:none;
+}
+
+.inline-radio label.inline-radio-label:before {  
+    border-radius:10px;  
+}
+
+input[type=radio]:checked + label {  
+	color:$pink;
+}
+
+input[type=radio]:checked + label:before {  
+	content: "\2022";
+	color: $pink;
+	font-size: 3.5em;
+	text-align: center;
+	line-height: 0.4em;
+	font-family: sans-serif;
+}

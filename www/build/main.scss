@@ -1,0 +1,231 @@
+@import "_colours";
+@import "_sizes";
+@import "reset";
+@import "_mixins";
+@import "_topcoat";
+@import "_lists";
+@import "_jquery.powertip";
+@import "vendor/ss-air";
+
+// Bourbon
+@import "bourbon/_bourbon";
+@import "_fonts";
+
+html, * {
+    font-family: 'Open Sans';
+}
+
+html {
+    font-style: normal;
+    font-weight: 400;
+    font-size:12pt;
+}
+
+a:link, a:visited {
+    color:$link;
+    text-decoration:none;
+}
+
+body {
+    margin:0;
+    background:$white;
+    font-family: 'Open Sans';
+    overflow: hidden;
+}
+
+.inline-menu-list {
+    text-indent:0;
+    padding:0;
+    display:block;
+    margin:1em 0;
+    li {
+        text-indent:0;
+        padding:0;
+        display:inline-block;
+        margin:0;
+        font-size:0.8em;
+        &:after {
+            margin-left:6px;
+            margin-right:3px;
+            content:'\00B7';
+            font-size:0.5em;
+        }
+    }
+    li:last-child:after {
+        content: none;
+    }
+}
+
+input {
+    font-weight:lighter;
+    font-size:1em;
+    @include placeholder {
+        color:$primary-text;
+        font-weight:lighter;
+    };
+}
+
+.btn-primary {
+    margin-top: 1em;
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $primary-button-shadow;
+    text-transform: uppercase;
+    padding: 15px;
+    background:$primary-button-main;
+    color:$white;
+    @include border-radius(5px);
+}
+
+// Page Stuff
+
+.view-container {
+    position: absolute;
+    left:0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-y:scroll;
+    @include transition(all $menu-animation-time ease);
+    &.menu-open {
+        left:-76.56%;
+        @include transition(all $menu-animation-time ease);
+    }
+
+    .page-container {
+        height:100%;
+        position:relative;
+    }
+}
+
+.burger-menu-container {
+    position: absolute;
+    top:0;
+    width:0%;
+    left:100%;
+    height:100%;
+    div {
+        white-space: nowrap;
+    }
+    overflow: hidden;
+    overflow-y:scroll;
+    background-color:$upmysport-blue;
+    @include transition(all $menu-animation-time ease);
+    &.menu-open {
+        left:23.44%;
+        width:76.56%;
+        @include transition(all $menu-animation-time ease);
+    }
+}
+
+.page, .modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    text-align: left;
+    
+    &--left {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    &--center {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    &--right {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    &--transition {
+        -webkit-transition-duration: .25s;
+        transition-duration: .25s;
+    }
+}
+
+// Nav bar
+
+.topcoat-navigation-bar {
+    height:3.188em;
+    box-sizing:border-box;
+    border-bottom:1px solid $light-grey;
+    background-color: $background;
+    box-shadow:none;
+    // @include transition(all $menu-animation-time ease);
+    // &.menu-open {
+    //     left:-76.56%;
+    //     @include transition(all $menu-animation-time ease);
+    // }
+}
+
+.topcoat-icon-button, .topcoat-icon-button--quiet {
+    border:none;
+    &:hover {
+        border:none;
+        background:inherit;
+        text-shadow:none;
+        box-shadow:none;
+    }
+}
+
+.topcoat-icon--back i {
+    font-size:1.4em;
+    color:$darker-grey;
+}
+
+.topcoat-icon--menu i {
+    font-size:2em;
+    color:$darker-grey;
+}
+
+.nav-bar-logo {
+    line-height:4rem;
+    img {
+        height:21px;
+    }
+}
+
+// Burger menu
+// TODO: Move these rules into their own file when ready
+
+.burger-menu-container {
+    .header, .burger-menu-item {
+        padding:0.8em $standard-margin;
+        height:3.188em;
+        box-sizing:border-box;
+        & > span, & > a {
+            margin:0;
+            font-size:17px;
+            padding:0;
+            color:$white;
+            span {
+                line-height: 1.3em;
+                vertical-align: text-top;
+                padding-left:0.2em;
+            }
+            i {
+                line-height:1em;
+            }
+        }
+    }
+    .header {
+        background-color:$dark-teal;
+        span {
+            color:$light-teal;
+        }
+    }
+}
+
+@import '_login';
+@import '_headers';
+@import '_bookings';
+@import '_booking';
+@import '_panels';
+@import './vendor/pull-to-refresh';

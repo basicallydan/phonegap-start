@@ -1,0 +1,16 @@
+{{#with booking}}
+	<div class="view-header">
+		<span class="header-text">
+			<span>{{title}}</span>
+		</span>
+	</div>
+	<ul class="topcoat-list list comments-list comments-list--latest">
+	</ul>
+	<a href="#" class="toggle-all toggle-all--visible" id="toggle-all-comments"><i class="ss-view"></i> Show <span class="num-remaining-comments"></span> more</a>
+	<a href="#" class="toggle-all" id="toggle-all-comments"><i class="ss-view"></i> Hide <span class="num-remaining-comments"></span> comments</a>
+	<div class="context-block">
+		<a href="#" class="context-block-button comments-button"><i class="ss-chat icon-left"></i><span>Add a comment</span><i class="ss-write icon-right"></i></a>
+		<a href="#" class="context-block-button time-button"><i class="ss-calendar icon-left"></i><span>{{bookingDetailsTimeText}}</span><i class="ss-write icon-right"></i></a>
+		<a href="#" class="context-block-button price-button"><i class="ss-banknote icon-left"></i><span>{{bookingDetailsPriceText}}</span><i class="ss-write icon-right"></i></a>
+	</div>
+{{/with}}

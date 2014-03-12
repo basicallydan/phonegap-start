@@ -1,0 +1,74 @@
+@import '_colours';
+@import '_sizes';
+@import 'bourbon/css3/_transition';
+@import 'bourbon/css3/_border-radius';
+
+.context-block {
+	border:1px solid $light-grey;
+	background-color:$off-white;
+	height:auto;
+	@include border-radius(5px);
+	text-align:center;
+	margin:$standard-margin $standard-margin * 0.4 0 $standard-margin * 0.4;
+
+	& > * {
+		margin:$standard-margin * 0.6;
+		display:block;
+	}
+
+	textarea, input[type=text] {
+		width:100%;
+		border:1px solid $light-grey;
+	}
+
+	&.slide-down {
+		@include transition(max-height $menu-animation-time ease, border-width $menu-animation-time ease, margin $menu-animation-time ease, padding $menu-animation-time ease);
+		height:0;
+		max-height:0;
+		padding:0 $standard-margin * 0.6;
+		margin:0 $standard-margin * 0.4 0 $standard-margin * 0.4;
+		border-width:0;
+		border-left-width:1px;
+		border-left-width:1px;
+		overflow:hidden;
+		&.visible {
+			@include transition(max-height $menu-animation-time ease, border-width $menu-animation-time ease, margin $menu-animation-time ease, padding $menu-animation-time ease, height $menu-animation-time ease);
+			border-width:1px;
+			max-height:500px;
+			height:auto;
+			padding:$standard-margin * 0.6;
+			margin:$standard-margin $standard-margin * 0.4 0 $standard-margin * 0.4;
+		}
+	}
+
+	.context-block-button {
+		text-align:left;
+		display:block;
+		border-bottom:1px solid $light-grey;
+		padding:$standard-margin * 0.6;
+		line-height: 1.4em;
+		position:relative;
+		margin:0;
+
+		span {
+			color:$off-black;
+			font-size:0.95em;
+			font-weight:100;
+		}
+		&:last-child {
+			border-bottom:none;
+		}
+
+		i.icon-left {
+			color:$pink;
+			vertical-align: middle;
+			font-size: 1.2em;
+			margin-right: 0.5em;
+		}
+		i.icon-right {
+			top:$small-margin;
+			right:$small-margin;
+			position:absolute;
+		}
+	}
+}

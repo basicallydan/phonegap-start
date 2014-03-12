@@ -1,0 +1,147 @@
+@import "_colours";
+@import "_mixins";
+@import "bourbon/css3/_border-radius";
+@import "_sizes";
+
+.date-picker-container {
+	margin:$standard-margin * 0.4;
+	@include border-radius(0.4em);
+	overflow: hidden;
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.time-picker-container {
+	select {
+		@include border-radius(0.3em);
+		background-color:$white;
+		border:1px solid $light-grey;
+		font-color:$off-black;
+		margin:$standard-margin * 0.6;
+		-webkit-appearance: none;
+		display: inline-block;
+		width: 41%;
+		padding: 10px;
+		box-sizing: border-box;
+		background: white url(../img/dropdown-arrows.png) no-repeat center right;
+		background-position-x: 90%;
+		font-size: 1.1em;
+
+		&:last-child {
+			margin-left:0;
+		}
+	}
+}
+
+.pika-single {
+	font-weight:100;
+}
+
+.pika-table {
+	width:100%;
+	td, th {
+		width: 14.2857%;
+		text-align:center;
+		font-weight:100;
+		padding:0.8em 0;
+		abbr {
+			text-decoration: none;
+			border:none;		
+		}
+	}
+	thead {
+		background-color:$teal;
+		border:1px solid $teal;
+		border-top:none;
+		border-bottom:none;
+		color:$white;
+		text-decoration: none;
+		font-size:0.8em;
+	}
+	tbody {
+		border:1px solid $light-grey;
+		border-top:none;
+		border-bottom:none;
+		background-color: $lighter-grey;
+		// border:none;
+	}
+	tbody td {
+		button {
+			background-color:transparent;
+			border:none;
+			@include circle(2em);
+			font-size:0.8em;
+			padding-left: 0.4em;
+			padding-top: 0.3em;
+		}
+
+		&.is-selected {
+			button {
+				background-color:$pink;
+				color:$white;
+			}
+		}
+	}
+}
+
+.pika-title {
+	background-color:$dark-teal;
+	color:$white;
+	@include border-top-radius(0.3em);
+	position:relative;
+	.pika-label {
+		width:50%;
+		display:inline-block;
+		box-sizing: border-box;
+		padding:0.5em;
+		select {
+			display:none;
+		}
+		&:first-child {
+			text-align:right;
+		}
+		&:nth-child(2) {
+			text-align:left;
+		}
+	}
+	.pika-prev, .pika-next {
+		position:absolute;
+		top:0.2em;
+		border:none;
+		box-sizing: border-box;
+		background-color:transparent;
+		width: 1.6em;
+		height: 2.3em;
+		color:$white;
+		/* hide text using text-indent trick, using width value (it's enough) */
+		// text-indent: 20px;
+		color:$dark-teal;
+		white-space: nowrap;
+		overflow: hidden;
+		background-color: transparent;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: 75% 75%;
+		// Now the SS Air Stuff
+		font-family: "SSAir";
+		font-style: normal;
+		font-weight: 400;
+		text-decoration: none;
+		text-rendering: optimizeLegibility;
+		white-space: nowrap;
+		/*-webkit-font-feature-settings: "liga"; Currently broken in Chrome >= v22. Falls back to text-rendering. Safari is unaffected. */
+		-moz-font-feature-settings: "liga=1";
+		-moz-font-feature-settings: "liga";
+		-ms-font-feature-settings: "liga" 1;
+		-o-font-feature-settings: "liga";
+		font-feature-settings: "liga";
+		-webkit-font-smoothing: antialiased;
+	}
+	.pika-prev {
+		left:$standard-margin * 0.6;
+	}
+	.pika-prev:before,.pika-prev.right:after{content:'◅'; color:$white;}
+	.pika-next {
+		right:$standard-margin * 0.6;
+	}
+	.pika-next:before,.pika-next.right:after{content:'▻'; color:$white;}
+}

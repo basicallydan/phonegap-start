@@ -1,0 +1,22 @@
+@mixin border-radius($radii) {
+  @include prefixer(border-radius, $radii, spec);
+}
+
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+          box-shadow: $shadow;
+}
+
+@mixin circle($circle-radius) {
+	width:$circle-radius;
+	height:$circle-radius;
+	@include border-radius($circle-radius / 2);
+}
+
+@mixin border-top-left-radius($radii) {
+  @include prefixer(border-top-left-radius, $radii, spec);
+}
+
+@mixin border-top-right-radius($radii) {
+  @include prefixer(border-top-right-radius, $radii, spec);
+}
